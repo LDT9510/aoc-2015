@@ -1,11 +1,9 @@
-use advent_of_code::utils::string_utils::StrExtensionsUtils;
-
 advent_of_code::solution!(2);
 
 pub fn part_one(input: &str) -> Option<u64> {
     Some(
         input
-            .split_lines()
+            .lines()
             .map(|str_dimensions| {
                 let num_dimensions: Vec<u64> = str_dimensions
                     .split('x')
@@ -22,7 +20,7 @@ pub fn part_one(input: &str) -> Option<u64> {
 pub fn part_two(input: &str) -> Option<u64> {
     Some(
         input
-            .split_lines()
+            .lines()
             .map(|str_dimensions| {
                 let mut num_dimensions: Vec<u64> = str_dimensions
                     .split('x')

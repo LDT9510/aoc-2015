@@ -1,4 +1,3 @@
-use advent_of_code::utils::string_utils::StrExtensionsUtils;
 use itertools::Itertools;
 
 advent_of_code::solution!(5);
@@ -28,11 +27,11 @@ pub fn is_nice2(s: &str) -> bool {
 }
 
 pub fn part_one(input: &str) -> Option<usize> {
-    Some(input.split_lines().filter(|s| is_nice1(s)).count())
+    Some(input.lines().filter(|s| is_nice1(s)).count())
 }
 
 pub fn part_two(input: &str) -> Option<usize> {
-    Some(input.split_lines().filter(|s| is_nice2(s)).count())
+    Some(input.lines().filter(|s| is_nice2(s)).count())
 }
 
 #[cfg(test)]

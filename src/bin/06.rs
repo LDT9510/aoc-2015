@@ -1,7 +1,6 @@
 use advent_of_code::utils::coord_2d::Coord;
 use advent_of_code::utils::geom::PositionalRectangle;
 use advent_of_code::utils::grid::Grid;
-use advent_of_code::utils::string_utils::StrExtensionsUtils;
 use std::str::FromStr;
 
 advent_of_code::solution!(6);
@@ -47,7 +46,7 @@ fn parse_action_and_rectangle(instruction: &str) -> (Action, PositionalRectangle
 pub fn part_one(input: &str) -> Option<usize> {
     let mut grid = BigBoolGrid::new_boxed();
 
-    for instruction in input.split_lines() {
+    for instruction in input.lines() {
         let (action, rect) = parse_action_and_rectangle(instruction);
 
         match action {
@@ -72,7 +71,7 @@ pub fn part_one(input: &str) -> Option<usize> {
 pub fn part_two(input: &str) -> Option<usize> {
     let mut grid = BigIntGrid::new_boxed();
 
-    for instruction in input.split_lines() {
+    for instruction in input.lines() {
         let (action, rect) = parse_action_and_rectangle(instruction);
 
         match action {
