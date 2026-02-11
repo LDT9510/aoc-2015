@@ -1,31 +1,43 @@
 advent_of_code::solution!(10);
 
-fn look_and_say(input: &str) -> String {
+// manual solution
+// fn look_and_say(input: &str) -> String {
+//     let mut output = String::new();
+//     let mut counter = 1;
+// 
+//     fn close_group(b: u8, o: &mut String, cnt: &mut i32) {
+//         o.push_str(&cnt.to_string());
+//         o.push(b as char);
+//         *cnt = 1;
+//     }
+// 
+//     let bytes = input.as_bytes();
+// 
+//     for i in 0..bytes.len() {
+//         let b = bytes[i];
+// 
+//         if i + 1 < bytes.len() {
+//             let next_b = bytes[i + 1];
+// 
+//             if b == next_b {
+//                 counter += 1;
+//             } else {
+//                 close_group(b, &mut output, &mut counter);
+//             }
+//         } else {
+//             close_group(b, &mut output, &mut counter);
+//         }
+//     }
+// 
+//     output
+// }
+
+fn look_and_say2(input: &str) -> String {
     let mut output = String::new();
-    let mut counter = 1;
-
-    fn close_group(b: u8, o: &mut String, cnt: &mut i32) {
-        o.push_str(&cnt.to_string());
-        o.push(b as char);
-        *cnt = 1;
-    }
-
-    let bytes = input.as_bytes();
-
-    for i in 0..bytes.len() {
-        let b = bytes[i];
-
-        if i + 1 < bytes.len() {
-            let next_b = bytes[i + 1];
-
-            if b == next_b {
-                counter += 1;
-            } else {
-                close_group(b, &mut output, &mut counter);
-            }
-        } else {
-            close_group(b, &mut output, &mut counter);
-        }
+    
+    for chunk in input.as_bytes().chunk_by(|a, b| a == b) {
+        output.push_str(&chunk.len().to_string());
+        output.push(chunk[0] as char);
     }
 
     output
@@ -35,7 +47,7 @@ pub fn part_one(input: &str) -> Option<usize> {
     let mut output = input.to_string();
 
     for _ in 0..40 {
-        output = look_and_say(&output);
+        output = look_and_say2(&output);
     }
 
     Some(output.len())
@@ -45,7 +57,7 @@ pub fn part_two(input: &str) -> Option<usize> {
     let mut output = input.to_string();
 
     for _ in 0..50 {
-        output = look_and_say(&output);
+        output = look_and_say2(&output);
     }
 
     Some(output.len())
